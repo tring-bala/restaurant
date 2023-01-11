@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant: one
+  is_head_branch: false
+  name: MyString
+  number: MyString
+  contact_person: MyString
+  contact_name: MyString
+  email: MyString
+  owner_id: 1
+
+two:
+  restaurant: two
+  is_head_branch: false
+  name: MyString
+  number: MyString
+  contact_person: MyString
+  contact_name: MyString
+  email: MyString
+  owner_id: 1

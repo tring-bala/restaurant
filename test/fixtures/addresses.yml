@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  addressable_type: MyString
+  addressable_id: 1
+  building_number: MyString
+  street: MyString
+  locality: MyString
+  address_line1: MyString
+  address_line2: MyString
+  landmark: MyString
+  city: MyString
+  state: MyString
+  pincode: MyString
+  phone_number: MyString
+  mobile_number: MyString
+  email: MyString
+  lat: 1.5
+  lng: 1.5
+
+two:
+  addressable_type: MyString
+  addressable_id: 1
+  building_number: MyString
+  street: MyString
+  locality: MyString
+  address_line1: MyString
+  address_line2: MyString
+  landmark: MyString
+  city: MyString
+  state: MyString
+  pincode: MyString
+  phone_number: MyString
+  mobile_number: MyString
+  email: MyString
+  lat: 1.5
+  lng: 1.5
