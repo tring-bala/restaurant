@@ -6,7 +6,7 @@
     
   </div>
 </div>
-<%= form_with(model: [:admin, restaurant], local: true) do |form| %>
+<%= nested_form_for([:admin, @restaurant]) do |form| %>
   <% if restaurant.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
@@ -60,11 +60,69 @@
       <%= form.text_field :contact_number, class: "form-control", required: true %>
     </div>
     <div class="col-12">
+      <%= form.fields_for :branches, @branch do |branch|%>
+        <%branch_obj = branch.object%>
+        <%= branch.hidden_field :is_head_branch, value: true%>
+        <%= branch.hidden_field :name, value: "Head Office"%>
+        <%= branch.fields_for :address, branch_obj.address || branch_obj.build_address do |addr|%>
+          <fieldset>
+            <legend style="font-size: 18px;">Address:</legend>
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <%= addr.label :building_number do%>
+                  Building / Flat # <i class="fas fa-asterisk required_field"></i>
+                <% end -%>
+                <%= addr.text_field :building_number, class: "form-control", required: true%>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <%= addr.label :street do%>
+                  Street
+                <% end -%>
+                <%= addr.text_field :street, class: "form-control"%>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <%= addr.label :locality do%>
+                  Locality <i class="fas fa-asterisk required_field"></i>
+                <% end -%>
+                <%= addr.text_field :locality, class: "form-control"%>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <%= addr.label :landmark do%>
+                  Landmark
+                <% end -%>
+                <%= addr.text_field :landmark, class: "form-control"%>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <%= addr.label :city do%>
+                  City <i class="fas fa-asterisk required_field"></i>
+                <% end -%>
+                <%= addr.text_field :city, class: "form-control", required: true%>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <%= addr.label :state do%>
+                  State <i class="fas fa-asterisk required_field"></i>
+                <% end -%>
+                <%= addr.text_field :state, class: "form-control", required: true%>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <%= addr.label :pincode do%>
+                  Pincode  <i class="fas fa-asterisk required_field"></i>
+                <% end -%>
+                <%= addr.text_field :pincode, class: "form-control", required: true%>
+              </div>
+            </div>
+          </fieldset>
+        <% end -%>
+      <% end -%>
+    </div>
+    <div class="col-12">
       <%= form.submit "Submit", class: "btn btn-success btn-sm" %>
     </div>
-  </div>
-
-
-  <div class="actions">
   </div>
 <% end %>

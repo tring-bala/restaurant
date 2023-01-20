@@ -1,0 +1,66 @@
+<%= nested_form_for([:restaurant, ingredient]) do |form| %>
+  <% if ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+
+      <ul>
+      <% ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <%= form.label :name, "Ingredient" %>
+        <%= form.text_field :name, class: "form-control", required: true %>
+      </div>      
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <%= form.label :unit, "Unit" %>
+        <%= form.text_field :unit, class: "form-control", required: true %>
+      </div>      
+    </div>
+    <div class="col-12">
+      <fieldset>
+        <legend style="font-size: 18px;">Sub Ingredients:</legend>
+        <%= form.link_to_add :sub_ingredients, :data => { :target => "#sub_ingredients_body" }, class: "btn btn-info btn-sm mb-3 float-right", style: "position: absolute; right: 15px; top: 0" do %>
+          <i class="fas fa-plus"></i>
+        <% end -%>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sub Ingredent</th>
+              <th>Unit</th>
+              <th>Quantity</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="sub_ingredients_body">
+            <%= form.fields_for :sub_ingredients, wrapper: false do |sub_ing| %>
+              <tr class="fields">
+                <td><%= sub_ing.text_field :name, class: "form-control" %></td>
+                <td><%= sub_ing.text_field :unit, class: "form-control" %></td>
+                <td><%= sub_ing.number_field :quantity, step: :any, class: "form-control" %></td>
+                <td>
+                  <%= sub_ing.link_to_remove class: "btn btn-danger btn-sm" do %>
+                    <i class="fas fa-trash"></i>
+                  <% end -%>    
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </fieldset>
+    </div>
+    <div class="col-12">
+      <div class="actions">
+        <%= form.submit "Save", class: "btn btn-success"%>
+      </div>
+      
+    </div>
+  </div>
+
+<% end %>

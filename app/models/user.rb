@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one :address, as: :addressable, dependent: :destroy
+  accepts_nested_attributes_for :address, reject_if: :all_blank, allow_destroy: true
+
   def admin?
     user_type === AppConstant::ADMIN
   end

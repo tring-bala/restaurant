@@ -1,0 +1,26 @@
+<%= form_with(model: [:restaurant, category], local: true) do |form| %>
+  <% if category.errors.any? %>category
+    <div id="error_explanation">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+      <div class="form-group">
+        <%= form.label :name, "Category"%>
+        <%= form.text_field :name, class: "form-control", required: true%>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <%= form.submit "Save", class: "btn btn-success"%>
+      </div>
+    </div>
+  </div>
+<% end %>

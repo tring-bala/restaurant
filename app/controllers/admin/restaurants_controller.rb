@@ -13,10 +13,13 @@ class Admin::RestaurantsController < Admin::BaseController
   # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
+    @branch = @restaurant.branches.build(is_head_branch: true)
   end
 
   # GET /restaurants/1/edit
   def edit
+    @branch = @restaurant.branches.where(is_head_branch: true)
+    @branch = @restaurant.branches.build(is_head_branch: true) if @branch.blank?
   end
 
   # POST /restaurants or /restaurants.json
@@ -65,6 +68,6 @@ class Admin::RestaurantsController < Admin::BaseController
 
     # Only allow a list of trusted parameters through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :number, :website, :contact_person, :contact_number, :email, :owner_id)
+      params.require(:restaurant).permit(:name, :number, :website, :contact_person, :contact_number, :email, :owner_id, branches_attributes: [:id, :name, :is_head_branch, {address_attributes: [:id, :building_number, :street, :locality, :landmark, :city, :state, :pincode, :_destroy]}, :_destroy])
     end
 end

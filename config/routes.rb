@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   devise_for :users
   devise_scope :user do
     get '/admin/sign_in' => 'devise/sessions#new'
@@ -15,5 +14,10 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     resources :restaurants
+  end
+
+  namespace :restaurant do
+    resources :ingredients
+    resources :categories
   end
 end

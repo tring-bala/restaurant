@@ -71,3 +71,4 @@ gem 'jquery-rails'
 gem 'font_awesome5_rails'
 gem 'bootstrap_sb_admin_base_v2'
 gem 'bootstrap4-kaminari-views'
+gem "nested_form"
