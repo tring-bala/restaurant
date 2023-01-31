@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   namespace :restaurant do
     resources :ingredients
     resources :categories
+    resources :menus
   end
 end
