@@ -3,7 +3,7 @@
     <%= link_to restaurant_menus_path, class: "btn btn-info btn-sm mb-3 float-right" do%>
     <em class="fas fa-arrow-left"></em> Back
     <% end -%>
-    
+
   </div>
 </div>
 <%= form_with(model: [:restaurant, menu], local: true) do |form| %>
@@ -30,13 +30,13 @@
       <%= form.label :url do %>
         Image <i class="fas fa-asterisk required_field"></i>
       <% end -%>
-      <%= form.url_field :url, class: "form-control", required: true %>
+      <%= form.url_field :image_url, class: "form-control", required: true %>
     </div>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
       <%= form.label :number do %>
         Menu Code <i class="fas fa-asterisk required_field"></i>
       <% end -%>
-      <%= form.text_field :string, class: "form-control", required: true %>
+      <%= form.number_field :menu_code, class: "form-control", required: true %>
     </div>
 
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">

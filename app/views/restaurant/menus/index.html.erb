@@ -12,14 +12,15 @@
         <%if @menus.present?%>
           <%i =(page - 1) * per_page %>
           <% @menus.each do |menu| %>
-          <div style=" display: flex; flex-direction: column; width: 250px; height: 250px; margin-top:5%;">
-            <div>
-              <span><%= i+= 1%></span>
+          <div style=" display: flex; flex-direction: column; justify-content: space-between; width: 250px; height: 380px; margin-top:5%;">
+            <div style="height:80%;">
+              <span><%= i+= 1%>.</span>
               <h3><%= menu.name %></h3>
+              <img src='<%= menu.image_url%>' alt="menuimg" style="width: 100px; height: 100px;"/>
               <p><%= menu.description %></p>
               <b><span>Rs.</span><%= menu.price %></b>
             </div>
-            <div>
+            <div style="height:20%;">
               <%= link_to edit_restaurant_menu_path(menu), class: "btn btn-sm btn-warning" do %>
               <em class="fas fa-edit"></em>
               <% end -%>
